@@ -19,6 +19,10 @@ function getTimeline(){
 
 }
 
+function getSearch(){
+    
+}
+
 function httpcall($query, $url){
 	global $api_info, $base_url;
     $requestMethod = "GET";
