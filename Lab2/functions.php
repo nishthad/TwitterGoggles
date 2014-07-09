@@ -1,7 +1,10 @@
 <?php
 require_once('TwitterAPIExchange.php');
 $api_info = array (
-    w
+    "oauth_access_token"=> "32967775-amRk4e5aQ0ADonHPgcGBtJsrBPiwx72WcuTegQ7nT",
+    "oauth_access_token_secret" => "zuVxpl4HaXIuRLhdsTaLxRRjBADTTqQuznyoyoX9oCezW",
+    "consumer_key" => "5oAUCi6emcEbB8Xd6TVC1ejQs",
+    "consumer_secret" => "CjOMlqPW8MFP2G8AdkJu0Jw0h8kEhJKicdoQCCh4GR7KcGyiy6"
 );
 
 $base_url = "https://api.twitter.com/1.1";
