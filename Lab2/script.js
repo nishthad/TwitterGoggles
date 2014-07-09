@@ -13,8 +13,8 @@ Timeline.prototype.getData = function(){
             query: self.userid
         },
         success: function(data){
-         
-        $("#response").append(JSON.stringify(data));
+        var pretty = JSON.stringify(JSON.parse(data),null,2);
+        $("#response").append(pretty);
         }
     });
     
