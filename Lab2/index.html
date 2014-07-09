@@ -8,20 +8,36 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
         <script src="script.js"></script>
         
         <title>Twitter Goggles</title>
        
     </head>
     <body>
-        <h1>Twitter Goggles</h1>
-        <h1><small>INFO 154</small></h1>
-        
-        <div id="response">
-        
+        <div class="container-fluid">
+            <h1>Twitter Goggles</h1>
+            <h1><small>INFO 154</small></h1>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" placeholder="Username" id="username">
+                        <span class="input-group-btn">
+                            <button id="search_user" class="btn btn-default" type="button">Go!</button>
+                        </span>
+                    </div>
+                    <div id="response">
+
+                    </div>
+
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+            
         </div>
 
     </body>

@@ -13,8 +13,8 @@ Timeline.prototype.getData = function(){
             query: self.userid
         },
         success: function(data){
-          
-        $("#response").append(data);
+         
+        $("#response").append(JSON.stringify(data));
         }
     });
     
@@ -22,6 +22,12 @@ Timeline.prototype.getData = function(){
 }
 
 $(document).ready(function(){
-    var t = new Timeline("nishthaquack");
+
+$("#search_user").on("click", function(){
+    var username = $("#username").val();
+    var t = new Timeline(username);
     t.getData();
+    
+});
+    
 });
