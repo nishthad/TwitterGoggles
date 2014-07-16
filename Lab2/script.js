@@ -43,6 +43,8 @@ Timeline.prototype.render = function(raw_data){
    $("#response").append(html)
 }
 
+
+
 $(document).ready(function(){
 
 $("#search_user").on("click", function(){
@@ -53,3 +55,4 @@ $("#search_user").on("click", function(){
 });
     
 });
+
