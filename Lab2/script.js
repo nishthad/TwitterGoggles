@@ -45,16 +45,6 @@ Timeline.prototype.render = function(raw_data){
 
 
 
-$(document).ready(function(){
-
-$("#search_user").on("click", function(){
-    var username = $("#username").val();
-    var t = new Timeline(username);
-    t.getData();
-    
-});
-    
-});
 
 
 function GetSearch(querystring){
@@ -69,9 +59,26 @@ GetSearch.prototype.getData = function(){
             call: "getSearch",
             query: self.querystring
         },
-    success function(data){
+    success: function(data){
         console.log(data)
     }
 
     });
 }
+
+
+$(document).ready(function(){
+
+$("#search_user").on("click", function(){
+    var username = $("#username").val();
+    var t = new Timeline(username);
+    t.getData();
+
+});
+
+    var new_query = "world";
+    var s = new GetSearch(new_query);
+    s.getData();
+
+
+});

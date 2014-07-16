@@ -21,9 +21,8 @@ function getTimeline(){
 
 function getSearch(){
      $querystring = urlencode($_GET["query"]);
-    $query = "$querystring";
-    $url = "https://api.twitter.com/1.1/search/tweets.json
-";
+    $query = "?q=$querystring";
+    $url = "https://api.twitter.com/1.1/search/tweets.json";
     echo httpcall($query, $url);
     
 }
