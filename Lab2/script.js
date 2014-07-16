@@ -43,6 +43,8 @@ Timeline.prototype.render = function(raw_data){
    $("#response").append(html)
 }
 
+
+
 $(document).ready(function(){
 
 $("#search_user").on("click", function(){
@@ -54,6 +56,7 @@ $("#search_user").on("click", function(){
     
 });
 
+<<<<<<< HEAD
 function GetSearch(querystring){
     this.querystring = querystring;
 }
@@ -72,3 +75,5 @@ GetSearch.prototype.getData = function(){
 
     });
 }
+=======
+>>>>>>> origin/master
