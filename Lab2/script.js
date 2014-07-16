@@ -76,9 +76,10 @@ $("#search_user").on("click", function(){
 
 });
 
-    var new_query = "world";
-    var s = new GetSearch(new_query);
-    s.getData();
-
+    $("#search_str").on("click", function(){
+        var query = $("#searchstr").val();
+        var s = new GetSearch(query);
+        s.getData()
+    });
 
 });
