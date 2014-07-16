@@ -60,12 +60,32 @@ GetSearch.prototype.getData = function(){
             query: self.querystring
         },
     success: function(data){
-        console.log(data)
+        self.render(JSON.parse(data));
+
     }
 
     });
 }
 
+GetSearch.prototype.render = function(raw_data){
+   // console.log("render: "+ raw_data[0]);
+    var source = $("#search_info").html();
+    var template = Handlebars.compile(source);
+
+    for(var i=0; i<raw_data.statuses.length; i++){
+     var context = {
+        username: raw_data.statuses[i].user.name,
+        tweet: raw_data.statuses[i].text,
+         time:raw_data.statuses[i].created_at
+
+
+    }
+         var html = template(context);
+
+   $("#response_query").append(html)
+        }
+
+}
 
 $(document).ready(function(){
 
