@@ -12,6 +12,7 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         
+        <script src="handlebars-v1.3.0.js"></script>
         <script src="script.js"></script>
         
         <title>Twitter Goggles</title>
@@ -31,7 +32,15 @@
                         </span>
                     </div>
                     <div id="response">
-
+<!--                        <ul class="list-group">-->
+                            
+                            <script id="timeline_info" type="text/x-handlebars-template">
+                                <li class="list-group-item list-group-item-info">Name: {{user_name}}</li>
+                                <li class="list-group-item list-group-item-info">Screen Name: {{screen_name}}</li>
+                                <li class="list-group-item list-group-item-info">Followers: {{followers}}</li>
+                                <li class="list-group-item list-group-item-info">Statuses: {{statuses}}</li>
+                            </script>
+<!--                        </ul>-->
                     </div>
 
                 </div>
