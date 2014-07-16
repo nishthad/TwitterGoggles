@@ -53,3 +53,22 @@ $("#search_user").on("click", function(){
 });
     
 });
+
+function GetSearch(querystring){
+    this.querystring = querystring;
+}
+
+GetSearch.prototype.getData = function(){
+    var self = this;
+    $.ajax({
+        url:"functions.php",
+        data:{
+            call: "getSearch",
+            query: self.querystring
+        },
+    success function(data){
+        console.log(data)
+    }
+
+    });
+}
