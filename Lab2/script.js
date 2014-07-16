@@ -56,7 +56,7 @@ $("#search_user").on("click", function(){
     
 });
 
-<<<<<<< HEAD
+
 function GetSearch(querystring){
     this.querystring = querystring;
 }
@@ -75,5 +75,3 @@ GetSearch.prototype.getData = function(){
 
     });
 }
-=======
->>>>>>> origin/master
