@@ -26,11 +26,13 @@
                 <div class="col-lg-4">
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon">@</span>
+                        <!--Form to search for users -->
                         <input type="text" class="form-control" placeholder="Username" id="username">
                         <span class="input-group-btn">
                             <button id="search_user" class="btn btn-default" type="button">Go!</button>
                         </span>
                     </div>
+                    <!--Formatted results from query -->
                     <div id="response">
 <!--                        <ul class="list-group">-->
                             
@@ -48,13 +50,14 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="input-group input-group-lg">
-
+<!--Form to search for strings -->
                         <input type="text" class="form-control" placeholder="Search String" id="searchstr">
                         <span class="input-group-btn">
                             <button id="search_str" class="btn btn-default" type="button">Go!</button>
                         </span>
                     </div>
                     <div id="response_query">
+                        <!--Formatted results from query -->
                         <script id="search_info" type="text/x-handlebars-template">
                             <li class="list-group-item list-group-item-info">
                                 <h1>@{{username}}</h1>

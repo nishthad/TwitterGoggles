@@ -1,4 +1,4 @@
-<?php
+<?php //Calls TwitterAPIExchange's functions from the library
 require_once('TwitterAPIExchange.php');
 $api_info = array (
     "oauth_access_token"=> "32967775-amRk4e5aQ0ADonHPgcGBtJsrBPiwx72WcuTegQ7nT",
@@ -11,20 +11,19 @@ $base_url = "https://api.twitter.com/1.1";
 
 call_user_func($_GET['call']);
 
-function getTimeline(){
-    $userid = $_GET["query"];
-    $query = "?screen_name=$userid";
+function getTimeline(){ //this function combines the queried userid and the search url
+    $userid = $_GET["query"]; // Receives query query
+    $query = "?screen_name=$userid"; //converts query to readable http
     $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-    echo httpcall($query, $url);
+    echo httpcall($query, $url); //combines the queried string with the search url
 
 }
 
-function getSearch(){
-     $querystring = urlencode($_GET["query"]);
-    $query = "?q=
-    $querystring";
+function getSearch(){ //this function combines the queried string and the search url
+    $querystring = urlencode($_GET["query"]); //Receives query inputted and encodes querystring to be passed through $url
+    $query = "?q=$querystring";  //converts query to readable http
     $url = "https://api.twitter.com/1.1/search/tweets.json";
-    echo httpcall($query, $url);
+    echo httpcall($query, $url); //combines the queried string with the search url
     
 }
 

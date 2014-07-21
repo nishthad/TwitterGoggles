@@ -1,9 +1,10 @@
+//Uses Timeline Function from functions.php
 function Timeline(userid){
     this.userid = userid;
     
     
 }
-
+//Uses getTimeline function to receive data
 Timeline.prototype.getData = function(){
     var self = this;
     console.log("getting data...");
@@ -25,7 +26,7 @@ Timeline.prototype.getData = function(){
     
 }
 
-
+//Selects specified data from what is received: user name, screen name, followers, and number of statuses
 Timeline.prototype.render = function(raw_data){
    // console.log("render: "+ raw_data[0]);
     var source = $("#timeline_info").html();
@@ -39,14 +40,14 @@ Timeline.prototype.render = function(raw_data){
         
     }   
     var html = template(context);
-    
+   //add results to response id in index
    $("#response").append(html)
 }
 
 
 
 
-
+//Uses getSearch Function from functions.php
 function GetSearch(querystring){
     this.querystring = querystring;
 }
@@ -67,11 +68,12 @@ GetSearch.prototype.getData = function(){
     });
 }
 
+//Selects specified data from what is received: user name, tweet, and time
 GetSearch.prototype.render = function(raw_data){
    // console.log("render: "+ raw_data[0]);
     var source = $("#search_info").html();
     var template = Handlebars.compile(source);
-
+//loops through each result for the specific information
     for(var i=0; i<raw_data.statuses.length; i++){
      var context = {
         username: raw_data.statuses[i].user.name,
@@ -82,6 +84,7 @@ GetSearch.prototype.render = function(raw_data){
     }
          var html = template(context);
 
+    //add results to response id in index
    $("#response_query").append(html)
         }
 
