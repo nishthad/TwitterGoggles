@@ -19,9 +19,15 @@ function getTimeline(){ //this function combines the queried userid and the sear
 
 }
 
+<<<<<<< HEAD
 function getSearch(){ //this function combines the queried string and the search url
     $querystring = urlencode($_GET["query"]); //Receives query inputted and encodes querystring to be passed through $url
     $query = "?q=$querystring";  //converts query to readable http
+=======
+function getSearch(){
+     $querystring = urlencode($_GET["query"]);
+    $query = "?q=$querystring";
+>>>>>>> origin/master
     $url = "https://api.twitter.com/1.1/search/tweets.json";
     echo httpcall($query, $url); //combines the queried string with the search url
     
@@ -37,7 +43,5 @@ function httpcall($query, $url){
 	
 	return $response;
 }
-
-
 
 ?>
