@@ -1,10 +1,12 @@
-//Uses Timeline Function from functions.php
+/**
+Creates a class timeline with userid as attribtue
+**/
 function Timeline(userid){
     this.userid = userid;
     
     
 }
-//Uses getTimeline function to receive data
+//getData as method of Timeline calls on the getTimeline from functions.php to get JSON from Twitter API
 Timeline.prototype.getData = function(){
     var self = this;
     console.log("getting data...");
@@ -26,7 +28,11 @@ Timeline.prototype.getData = function(){
     
 }
 
-//Selects specified data from what is received: user name, screen name, followers, and number of statuses
+/**
+render as a method of Timeline
+    Selects specified data from what is received(JSON): user name, screen name, followers, and number of statuses
+    Uses handlebars.js to render UI with relevant content
+**/
 Timeline.prototype.render = function(raw_data){
    // console.log("render: "+ raw_data[0]);
     var source = $("#timeline_info").html();
@@ -40,17 +46,23 @@ Timeline.prototype.render = function(raw_data){
         
     }   
     var html = template(context);
-   //add results to response id in index
+   //add results to response div in index
    $("#response").append(html)
 }
 
 
 
 
-//Uses getSearch Function from functions.php
+/**
+Creates class GetSearch with attirbute querystring as entered by user
+**/
 function GetSearch(querystring){
     this.querystring = querystring;
 }
+
+/**
+    getData as a method of GetSearch calls on getSearch from functions.php to get JSON from Twitter API
+**/
 
 GetSearch.prototype.getData = function(){
     var self = this;
@@ -68,7 +80,11 @@ GetSearch.prototype.getData = function(){
     });
 }
 
-//Selects specified data from what is received: user name, tweet, and time
+/** render as a method of GetSearch
+    Selects specified data from what is received (JSON): user name, tweet, and time
+    Uses handlebars.js to render UI
+
+**/
 GetSearch.prototype.render = function(raw_data){
    // console.log("render: "+ raw_data[0]);
     var source = $("#search_info").html();
@@ -84,7 +100,7 @@ GetSearch.prototype.render = function(raw_data){
     }
          var html = template(context);
 
-    //add results to response id in index
+    //add results to response div in index
    $("#response_query").append(html)
         }
 
@@ -92,6 +108,7 @@ GetSearch.prototype.render = function(raw_data){
 
 $(document).ready(function(){
 
+//onclick listener for Go! of search user button, grabs user inputted value and creates instance of Timeline and calls on getData
 $("#search_user").on("click", function(){
     var username = $("#username").val();
     var t = new Timeline(username);
@@ -99,6 +116,7 @@ $("#search_user").on("click", function(){
 
 });
 
+//onclick listener for Go! of search query button, grabs uesr inputted value and creates instance of GetSearch and calls on getData
     $("#search_str").on("click", function(){
         var query = $("#searchstr").val();
         var s = new GetSearch(query);

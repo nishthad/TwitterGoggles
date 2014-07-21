@@ -7,31 +7,31 @@ $api_info = array (
     "consumer_secret" => "CjOMlqPW8MFP2G8AdkJu0Jw0h8kEhJKicdoQCCh4GR7KcGyiy6"
 );
 
-$base_url = "https://api.twitter.com/1.1";
+
 
 call_user_func($_GET['call']);
 
 function getTimeline(){ //this function combines the queried userid and the search url
-    $userid = $_GET["query"]; // Receives query query
-    $query = "?screen_name=$userid"; //converts query to readable http
+    $userid = $_GET["query"]; // Receives query from js
+    $query = "?screen_name=$userid"; //adds as param
     $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-    echo httpcall($query, $url); //combines the queried string with the search url
+    echo httpcall($query, $url); //calls httpcall function with query and url
 
 }
 
-<<<<<<< HEAD
+
 function getSearch(){ //this function combines the queried string and the search url
-    $querystring = urlencode($_GET["query"]); //Receives query inputted and encodes querystring to be passed through $url
-    $query = "?q=$querystring";  //converts query to readable http
-=======
-function getSearch(){
-     $querystring = urlencode($_GET["query"]);
-    $query = "?q=$querystring";
->>>>>>> origin/master
+    $querystring = urlencode($_GET["query"]); //Receives query inputted and urlencodes querystring
+    $query = "?q=$querystring";  //adds as param
     $url = "https://api.twitter.com/1.1/search/tweets.json";
-    echo httpcall($query, $url); //combines the queried string with the search url
+    echo httpcall($query, $url); //calls httpcall function with query and url
     
 }
+
+/**
+httpcall function takes endpoint (url) and query entered by user to make http request to twitter api
+uses TwitterAPIExchange library, creates an instance, provides the keys and tokens
+**/
 
 function httpcall($query, $url){
 	global $api_info, $base_url;
