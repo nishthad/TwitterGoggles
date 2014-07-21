@@ -11,6 +11,8 @@ $api_info = array (
 
 call_user_func($_GET['call']);
 
+
+//done by Nishtha
 function getTimeline(){ //this function combines the queried userid and the search url
     $userid = $_GET["query"]; // Receives query from js
     $query = "?screen_name=$userid"; //adds as param
@@ -20,6 +22,7 @@ function getTimeline(){ //this function combines the queried userid and the sear
 }
 
 
+//done by Jordan
 function getSearch(){ //this function combines the queried string and the search url
     $querystring = urlencode($_GET["query"]); //Receives query inputted and urlencodes querystring
     $query = "?q=$querystring";  //adds as param
@@ -33,6 +36,8 @@ httpcall function takes endpoint (url) and query entered by user to make http re
 uses TwitterAPIExchange library, creates an instance, provides the keys and tokens
 **/
 
+
+//done by Nishtha & Jordan
 function httpcall($query, $url){
 	global $api_info, $base_url;
     $requestMethod = "GET";

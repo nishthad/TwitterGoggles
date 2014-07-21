@@ -1,6 +1,8 @@
 /**
 Creates a class timeline with userid as attribtue
 **/
+
+//done by Nishtha (starts here)
 function Timeline(userid){
     this.userid = userid;
     
@@ -51,9 +53,10 @@ Timeline.prototype.render = function(raw_data){
 }
 
 
-
-
 /**
+
+Nishtha's code ends, Jordan's code starts
+
 Creates class GetSearch with attirbute querystring as entered by user
 **/
 function GetSearch(querystring){
@@ -106,6 +109,10 @@ GetSearch.prototype.render = function(raw_data){
 
 }
 
+
+/**
+    Jordan's code ends here, document.ready done by Nishtha
+**/
 $(document).ready(function(){
 
 //onclick listener for Go! of search user button, grabs user inputted value and creates instance of Timeline and calls on getData
