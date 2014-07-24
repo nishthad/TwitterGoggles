@@ -89,6 +89,7 @@ entities
             --->int
 favorited --> bool
 retweeted --> bool
+possibly_sensitive --> bool (OPTIONAL)
 lang --> string
 
 
