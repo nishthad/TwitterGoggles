@@ -7,6 +7,7 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="stylesheet.css">
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
@@ -23,7 +24,7 @@
             <h1>Twitter Goggles</h1>
             <h1><small>INFO 154</small></h1>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon">@</span>
                         <!--Form to search for users -->
@@ -46,19 +47,18 @@
                     </div>
 
                 </div>
-                <div class="col-lg-2">
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3">
                     <div class="input-group input-group-lg">
 <!--Form to search for strings -->
-                        <input type="text" class="form-control" placeholder="Search String" id="searchstr">
+                        <input type="text" class="form-control" placeholder="Search String 1" id="searchstr1">
                         <span class="input-group-btn">
-                            <button id="search_str" class="btn btn-default" type="button">Go!</button>
+                            <button id="search_str1" class="btn btn-default" type="button">Go!</button>
                         </span>
                     </div>
-                    <div id="response_query">
+                    <div id="response_query1" class="row-1">
                         <!--Formatted results from query -->
-                        <script id="search_info" type="text/x-handlebars-template">
+                        <script id="search_info1" type="text/x-handlebars-template">
                             <li class="list-group-item list-group-item-info">
                                 <h1>@{{username}}</h1>
                                 <h4>Tweet:{{tweet}}</h4>
@@ -67,7 +67,28 @@
                         </script>
 
                     </div>
+                </div>
+
+                <div class="col-lg-3 ">
+                    <div class="input-group input-group-lg">
+<!--Form to search for strings -->
+                        <input type="text" class="form-control" placeholder="Search String 2" id="searchstr2">
+                        <span class="input-group-btn">
+                            <button id="search_str2" class="btn btn-default" type="button">Go!</button>
+                        </span>
                     </div>
+                    <div id="response_query2" class="row-1">
+                        <!--Formatted results from query -->
+                        <script id="search_info2" type="text/x-handlebars-template">
+                            <li class="list-group-item list-group-item-info">
+                                <h1>@{{username}}</h1>
+                                <h4>Tweet:{{tweet}}</h4>
+                                <h5>Time:{{time}}</h5>
+                            </li>
+                        </script>
+
+                    </div>
+                </div>
                 </div>
 
             

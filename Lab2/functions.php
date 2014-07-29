@@ -8,8 +8,7 @@ $api_info = array (
 );
 
 
-
-call_user_func($_GET['call']);
+    call_user_func($_GET['call']);
 
 
 //done by Nishtha
@@ -27,8 +26,21 @@ function getSearch(){ //this function combines the queried string and the search
     $querystring = urlencode($_GET["query"]); //Receives query inputted and urlencodes querystring
     $query = "?q=$querystring";  //adds as param
     $url = "https://api.twitter.com/1.1/search/tweets.json";
-    echo httpcall($query, $url); //calls httpcall function with query and url
+    $json = httpcall($query, $url); //calls httpcall function with query and url
+    echo $json;
+    connectdb($json);
+
+}
+
+
+function connectdb($json){
+
+    $db = mysqli_connect("localhost","root","root","TwitterGoggles");
+    if (mysqli_connect_errno()) {
+      echo "Failed to connect to MySQL: ";
+    }
     
+
 }
 
 /**
