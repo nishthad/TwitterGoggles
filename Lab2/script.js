@@ -139,9 +139,9 @@ $("#search_user").on("click", function(){
 //create event for search 2 -- N
 
     $("#search_str2").on("click", function(){
-    var query = $("#searchstr2").val();
-    var s = new GetSearch(query,2);
-    s.getData()
+        var query = $("#searchstr2").val();
+        var s = new GetSearch(query,2);
+        s.getData()
     });
 
 });
