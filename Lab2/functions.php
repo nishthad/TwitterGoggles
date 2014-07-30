@@ -40,8 +40,13 @@ function connectdb($json){
       echo "Failed to connect to MySQL: ";
     }
     
+    $json = json_decode($json);
+
+    $statuses = $json->statuses;
 
 }
+
+
 
 /**
 httpcall function takes endpoint (url) and query entered by user to make http request to twitter api

@@ -135,13 +135,13 @@ $("#search_user").on("click", function(){
         var s = new GetSearch(query,1);
         s.getData()
     });
-
-//create event for search 2 -- N
-
-    $("#search_str2").on("click", function(){
-        var query = $("#searchstr2").val();
-        var s = new GetSearch(query,2);
-        s.getData()
-    });
+//
+////create event for search 2 -- N
+//
+//    $("#search_str2").on("click", function(){
+//        var query = $("#searchstr2").val();
+//        var s = new GetSearch(query,2);
+//        s.getData()
+//    });
 
 });
