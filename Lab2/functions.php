@@ -96,6 +96,55 @@ $user_columns = array (
     'notifications'
 );
 
+$user_vals_try = array (
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1'
+);
+
+$usercols = implode(",", $user_columns);
+    $SQL = "INSERT INTO user (". $usercols .") VALUES (" . $user_vals_try . ")";
+
+    $result = mysql_query($SQL);
+
+    //mysql_close($db);
+    echo "Records added to the database";
 
 }
 
