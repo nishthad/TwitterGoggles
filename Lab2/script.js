@@ -77,7 +77,8 @@ GetSearch.prototype.getData = function(){
             query: self.querystring
         },
     success: function(data){
-        self.render(JSON.parse(data));
+//        self.render(JSON.parse(data));
+        console.log(data);
 
     }
 

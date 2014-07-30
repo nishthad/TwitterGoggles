@@ -27,7 +27,7 @@ function getSearch(){ //this function combines the queried string and the search
     $query = "?q=$querystring";  //adds as param
     $url = "https://api.twitter.com/1.1/search/tweets.json";
     $json = httpcall($query, $url); //calls httpcall function with query and url
-    echo $json;
+    //echo $json;
     connectdb($json);
 
 }
@@ -43,6 +43,18 @@ function connectdb($json){
     $json = json_decode($json);
 
     $statuses = $json->statuses;
+//    $user = $statuses[0]->user;
+//    echo $user->name;
+
+    foreach($statuses as $stat_key=>$status){
+        $user = $status->user;
+        foreach($user as $key=>$value){
+            if($key != "entities")
+                echo "key= ".$key. " val= ".$value."\n";
+        }
+    }
+
+
 
 }
 
