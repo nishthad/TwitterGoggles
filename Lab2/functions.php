@@ -92,7 +92,7 @@ function insert_search_metadata($json){
 
     else {
         $query = "INSERT INTO search_metadata ($search_metadata_columns) VALUES (\"$search_metadata_values\")";
-        echo "$query\n\n\n";
+        //echo "$query\n\n\n";
         $db->query($query);
         echo $db->error;
         $db->close();
@@ -105,27 +105,12 @@ function insert_search_metadata($json){
 
 
 
-
-    $user_values = implode("\",\"", $user_values);
-
-    if (!$db) {
-      echo "Failed to connect to MySQL: ";
-    }
-
-    else {
-        $query = "INSERT INTO user ($user_columns) VALUES (\"$user_values\")";
-        echo "$query\n\n\n";
-        $db->query($query);
-        echo $db->error;
-        $db->close();
-        echo "Records added to the database";
-    }
-
-}
 
 
 
 function insert_status_metadata($json, $status_id){
+
+    $db = new mysqli('localhost','root','root','TwitterGoggles');
     $status_metadata_columns = array (
         'result_type',
         'iso_language_code',
@@ -133,10 +118,28 @@ function insert_status_metadata($json, $status_id){
         'idstatus_metadata'
         );
 
+    $status_metadata_columns = implode(",",$status_metadata_columns
+
     $status_metadata_values = array(
         $json->result_type,
         $json->iso_language_code,
-        $status_id);
+        $status_id
+    );
+
+    $status_metadata_values = implode("\",\"", $status_metadata_values);
+
+    if (!$db) {
+      echo "Failed to connect to MySQL: ";
+    }
+
+    else {
+        $query = "INSERT INTO status_metadata ($status_metadata_columns) VALUES (\"$status_metadata_values\")";
+       // echo "$query\n\n\n";
+        $db->query($query);
+        echo $db->error;
+        $db->close();
+        echo "Records added to the database";
+    }
 
 }
 
@@ -234,6 +237,25 @@ function insert_user($user_json){
 
 
     );
+
+
+    $user_values = implode("\",\"", $user_values);
+
+    if (!$db) {
+      echo "Failed to connect to MySQL: ";
+    }
+
+    else {
+        $query = "INSERT INTO user ($user_columns) VALUES (\"$user_values\")";
+        //echo "$query\n\n\n";
+        $db->query($query);
+        echo $db->error;
+        $db->close();
+        echo "Records added to the database";
+    }
+
+}
+
 
 /**
 httpcall function takes endpoint (url) and query entered by user to make http request to twitter api
