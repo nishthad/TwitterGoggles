@@ -28,127 +28,193 @@ function getSearch(){ //this function combines the queried string and the search
     $url = "https://api.twitter.com/1.1/search/tweets.json";
     $json = httpcall($query, $url); //calls httpcall function with query and url
     //echo $json;
-    connectdb($json);
+    add_records($json);
 
 }
 
 
-function connectdb($json){
+function add_records($json){
 
-    $db = mysqli_connect("localhost","root","root","TwitterGoggles");
-    if (mysqli_connect_errno()) {
+    $json = json_decode($json);
+    $search_metadata = $json->search_metadata;
+    insert_search_metadata($search_metadata);
+    $statuses = $json->statuses;
+    foreach($statuses as $st){
+       insert_user($st->user);
+       $user_id = $st->user->id;
+
+    }
+      echo "USERID: ".$user_id."\n\n";
+}
+
+
+function insert_search_metadata($json){
+
+    $db = new mysqli('localhost','root','root','TwitterGoggles');
+
+    $search_metadata_columns = array(
+        "completed_in",
+        "max_id",
+        "max_id_str",
+        "next_results",
+        "query",
+        "refresh_url",
+        "count",
+        "since_id",
+        "since_id_str"
+    );
+    $search_metadata_columns = implode(",", $search_metadata_columns);
+
+
+    $search_metadata_values = array(
+        $json->completed_in,
+        $json->max_id,
+        $json->max_id_str,
+        $json->next_results,
+        $json->query,
+        $json->refresh_url,
+        $json->count,
+        $json->since_id,
+        $json->since_id_str
+    );
+
+    $search_metadata_values = implode("\",\"", $search_metadata_values);
+    if (!$db) {
       echo "Failed to connect to MySQL: ";
     }
-    
-    $json = json_decode($json);
 
-    $statuses = $json->statuses;
-//    $user = $statuses[0]->user;
-//    echo $user->name;
-
-    foreach($statuses as $stat_key=>$status){
-        $user = $status->user;
-        foreach($user as $key=>$value){
-            if($key != "entities")
-                echo "key= ".$key. " val= ".$value."\n";
-        }
+    else {
+        $query = "INSERT INTO search_metadata ($search_metadata_columns) VALUES (\"$search_metadata_values\")";
+        echo "$query\n\n\n";
+        $db->query($query);
+        echo $db->error;
+        $db->close();
+        echo "Records added to the database";
     }
 
-$user_columns = array (
-    'user_id',
-    'id_str',
-    'name',
-    'screen_name',
-    'location',
-    'description',
-    'url',
-    'protected',
-    'followers_count',
-    'friends_count',
-    'listed_count',
-    'created_at',
-    'favorites_count',
-    'utc_offset',
-    'time_zone',
-    'geo_enabled',
-    'verified',
-    'statuses_count',
-    'lang',
-    'contributors_enabled',
-    'is_translator',
-    'is_translation_enabled',
-    'profile_background_color',
-    'profile_background_image_url',
-    'profile_background_image_url_https',
-    'profile_background_tile',
-    'profile_image_url',
-    'profile_image_url_https',
-    'profile_banner_url',
-    'profile_link_color',
-    'profile_sidebar_border_color',
-    'profile_sidebar_fill_color',
-    'profile_text_color',
-    'profile_use_background_image',
-    'default_profile',
-    'default_profile_image',
-    'following',
-    'follow_request_sent',
-    'notifications'
-);
-
-$user_vals_try = array (
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1',
-    '1'
-);
-
-$usercols = implode(",", $user_columns);
-    $SQL = "INSERT INTO user (". $usercols .") VALUES (" . $user_vals_try . ")";
-
-    $result = mysql_query($SQL);
-
-    //mysql_close($db);
-    echo "Records added to the database";
 
 }
 
 
+function insert_user($user_json){
+      $user_columns = array (
+        'user_id',
+        'id_str',
+        'name',
+        'screen_name',
+        'location',
+        'description',
+        'url',
+        //'protected',
+        'followers_count',
+        'friends_count',
+        'listed_count',
+        //'created_at',
+        //'favorites_count',
+        'utc_offset',
+        'time_zone',
+        'geo_enabled',
+        'verified',
+        'statuses_count',
+        'lang',
+        'contributors_enabled',
+        'is_translator',
+        'is_translation_enabled',
+        'profile_background_color',
+        'profile_background_image_url',
+        'profile_background_image_url_https',
+        'profile_background_tile',
+        'profile_image_url',
+        'profile_image_url_https',
+        //'profile_banner_url',
+        'profile_link_color',
+        'profile_sidebar_border_color',
+        'profile_sidebar_fill_color',
+        'profile_text_color',
+        'profile_use_background_image',
+        'default_profile',
+        'default_profile_image',
+        'following',
+        'follow_request_sent',
+        'notifications'
+    );
+    $user_columns = implode(",", $user_columns);
+
+    $db = new mysqli('localhost','root','root','TwitterGoggles');
+    $user_values = array (
+
+        $user_json->id,
+        $user_json->id_str,
+        $db->escape_string($user_json->name),
+        $db->escape_string($user_json->screen_name),
+        $db->escape_string($user_json->location),
+        $db->escape_string($user_json->description),
+        $user_json->url,
+        //$user_json->protected,
+        $user_json->followers_count,
+        $user_json->friends_count,
+        $user_json->listed_count,
+       // $user_json->created_at,
+        //$user_json->favorite_count,
+        $user_json->utc_offset,
+        $user_json->time_zone,
+        $user_json->geo_enabled,
+        $user_json->verified,
+        $user_json->statuses_count,
+        $user_json->lang,
+        $user_json->contributors_enabled,
+        $user_json->is_translator,
+        $user_json->is_translation_enabled,
+        $user_json->profile_background_color,
+        $user_json->profile_background_image_url,
+        $user_json->profile_background_image_url_https,
+        $user_json->profile_background_tile,
+        $user_json->profile_image_url,
+        $user_json->profile_image_url_https,
+        //$user_json->profile_banner_url,
+        $user_json->profile_link_color,
+        $user_json->profile_sidebar_border_color,
+        $user_json->profile_sidebar_fill_color,
+        $user_json->profile_text_color,
+        $user_json->profile_use_background_image,
+        $user_json->default_profile,
+        $user_json->default_profile_image,
+        $user_json->following,
+        $user_json->follow_request_sent,
+        $user_json->notifications
+
+
+    );
+
+
+
+    $user_values = implode("\",\"", $user_values);
+
+    if (!$db) {
+      echo "Failed to connect to MySQL: ";
+    }
+
+    else {
+        $query = "INSERT INTO user ($user_columns) VALUES (\"$user_values\")";
+        echo "$query\n\n\n";
+        $db->query($query);
+        echo $db->error;
+        $db->close();
+        echo "Records added to the database";
+    }
+
+}
+
+
+
+function insert_status_metadata($json, $status_id){
+
+}
+
+function insert_status($json, $userid){
+
+
+}
 
 /**
 httpcall function takes endpoint (url) and query entered by user to make http request to twitter api

@@ -39,6 +39,7 @@ CREATE TABLE `entities` (
 
 LOCK TABLES `entities` WRITE;
 /*!40000 ALTER TABLE `entities` DISABLE KEYS */;
+INSERT INTO `entities` VALUES (2,'status',22,'hashtag');
 /*!40000 ALTER TABLE `entities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,7 +76,7 @@ DROP TABLE IF EXISTS `search_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `search_metadata` (
-  `search_id` int(11) NOT NULL,
+  `search_id` int(11) NOT NULL AUTO_INCREMENT,
   `completed_in` float DEFAULT NULL,
   `max_id` bigint(20) DEFAULT NULL,
   `max_id_str` varchar(45) DEFAULT NULL,
@@ -86,7 +87,7 @@ CREATE TABLE `search_metadata` (
   `since_id` int(11) DEFAULT NULL,
   `since_id_str` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`search_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,12 +117,15 @@ CREATE TABLE `status` (
   `truncated` int(11) DEFAULT NULL,
   `in_reply_to_status_id` bigint(20) DEFAULT NULL,
   `in_reply_to_status_id_str` varchar(45) DEFAULT NULL,
+  `in_reply_to_user_id` bigint(20) DEFAULT NULL,
+  `in_reply_to_user_id_str` varchar(45) DEFAULT NULL,
   `in_reply_to_screen_name` varchar(45) DEFAULT NULL,
   `contributors` varchar(45) DEFAULT NULL,
   `retweet_count` int(11) DEFAULT NULL,
   `favorite_count` int(11) DEFAULT NULL,
   `favorited` int(11) DEFAULT NULL,
   `lang` varchar(45) DEFAULT NULL,
+  `retweeted` int(11) DEFAULT NULL,
   PRIMARY KEY (`status_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -179,13 +183,13 @@ CREATE TABLE `user` (
   `followers_count` int(11) DEFAULT NULL,
   `friends_count` int(11) DEFAULT NULL,
   `listed_count` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
+  `created_at` varchar(100) DEFAULT NULL,
   `favorites_count` int(11) DEFAULT NULL,
   `utc_offset` int(11) DEFAULT NULL,
   `time_zone` varchar(45) DEFAULT NULL,
   `geo_enabled` int(11) DEFAULT NULL,
   `verified` int(11) DEFAULT NULL,
-  `stauses_count` int(11) DEFAULT NULL,
+  `statuses_count` int(11) DEFAULT NULL,
   `lang` varchar(45) DEFAULT NULL,
   `contributors_enabled` int(11) DEFAULT NULL,
   `is_translator` int(11) DEFAULT NULL,
@@ -229,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-30 18:35:59
+-- Dump completed on 2014-08-01 14:29:21
