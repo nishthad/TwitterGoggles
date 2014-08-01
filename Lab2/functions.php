@@ -96,6 +96,37 @@ function insert_search_metadata($json){
 }
 
 
+
+
+
+    $user_values = implode("\",\"", $user_values);
+
+    if (!$db) {
+      echo "Failed to connect to MySQL: ";
+    }
+
+    else {
+        $query = "INSERT INTO user ($user_columns) VALUES (\"$user_values\")";
+        echo "$query\n\n\n";
+        $db->query($query);
+        echo $db->error;
+        $db->close();
+        echo "Records added to the database";
+    }
+
+}
+
+
+
+function insert_status_metadata($json, $status_id){
+
+}
+
+function insert_status($json, $userid){
+
+
+}
+
 function insert_user($user_json){
       $user_columns = array (
         'user_id',
@@ -185,36 +216,6 @@ function insert_user($user_json){
 
 
     );
-
-
-
-    $user_values = implode("\",\"", $user_values);
-
-    if (!$db) {
-      echo "Failed to connect to MySQL: ";
-    }
-
-    else {
-        $query = "INSERT INTO user ($user_columns) VALUES (\"$user_values\")";
-        echo "$query\n\n\n";
-        $db->query($query);
-        echo $db->error;
-        $db->close();
-        echo "Records added to the database";
-    }
-
-}
-
-
-
-function insert_status_metadata($json, $status_id){
-
-}
-
-function insert_status($json, $userid){
-
-
-}
 
 /**
 httpcall function takes endpoint (url) and query entered by user to make http request to twitter api
