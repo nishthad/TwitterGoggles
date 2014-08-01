@@ -39,17 +39,21 @@ function add_records($json){
     $search_metadata = $json->search_metadata;
     insert_search_metadata($search_metadata);
     $statuses = $json->statuses;
-    foreach($statuses as $st){
-       insert_user($st->user);
-       $user_id = $st->user->id;
 
-    }
+
+    foreach($statuses as $st){
+    insert_user($st->user);
+    $user_id = $st->user->id;
+
     //inserting status_metadata
     $status_metadata = $st->metadata;
     $status_id = $st->id;
     insert_status_metadata($status_metadata, $status_id);
 
     //inserting status
+
+    }
+
 
 
 }
@@ -70,6 +74,7 @@ function insert_search_metadata($json){
         "since_id",
         "since_id_str"
     );
+
     $search_metadata_columns = implode(",", $search_metadata_columns);
 
 
@@ -94,31 +99,25 @@ function insert_search_metadata($json){
         $query = "INSERT INTO search_metadata ($search_metadata_columns) VALUES (\"$search_metadata_values\")";
         //echo "$query\n\n\n";
         $db->query($query);
-        echo $db->error;
+        echo "search metadata error".$db->error."\n\n\n";
         $db->close();
-        echo "Records added to the database";
+
     }
 
 
 }
 
 
-
-
-
-
-
 function insert_status_metadata($json, $status_id){
 
     $db = new mysqli('localhost','root','root','TwitterGoggles');
-    $status_metadata_columns = array (
+    $status_metadata_columns = array(
         'result_type',
         'iso_language_code',
         'status_id',
-        'idstatus_metadata'
         );
 
-    $status_metadata_columns = implode(",",$status_metadata_columns
+    $status_metadata_columns = implode(",",$status_metadata_columns);
 
     $status_metadata_values = array(
         $json->result_type,
@@ -138,7 +137,7 @@ function insert_status_metadata($json, $status_id){
         $db->query($query);
         echo $db->error;
         $db->close();
-        echo "Records added to the database";
+
     }
 
 }
@@ -251,7 +250,7 @@ function insert_user($user_json){
         $db->query($query);
         echo $db->error;
         $db->close();
-        echo "Records added to the database";
+
     }
 
 }
