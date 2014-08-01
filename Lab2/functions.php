@@ -44,7 +44,7 @@ function add_records($json){
        $user_id = $st->user->id;
 
     }
-      echo "USERID: ".$user_id."\n\n";
+    echo "USERID: ".$user_id."\n\n";
 }
 
 
