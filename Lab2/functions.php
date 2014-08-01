@@ -143,6 +143,65 @@ function insert_status_metadata($json, $status_id){
 }
 
 function insert_status($json, $userid){
+    $db = new mysqli('localhost','root','root','TwitterGoggles');
+    $status_columns = array(
+        'status_id',
+        'user_id',
+        'id_str',
+        'created_at',
+        'text',
+        'source',
+        'truncated',
+        'in_reply_to_status_id',
+        'in_reply_to_status_id_str',
+        'in_reply_to_user_id',
+        'in_reply_to_user_id_str',
+        'in_reply_to_screen_name'
+        'contributors',
+        'retweet_count',
+        'favorites_count',
+        'favorited',
+        'lang',
+        'retweeted'
+        );
+
+     $status_columns = implode(",",$status_columns);
+
+     $status_values = array(
+        $json->status_id,
+        $userid
+        $json->id_str,
+        $json->created_at,
+        $json->text,
+        $json->source,
+        $json->truncated,
+        $json->in_reply_to_status_id,
+        $json->in_reply_to_status_id_str,
+        $json->in_reply_to_user_id,
+        $json->in_reply_to_user_id_str,
+        $json->in_reply_to_screen_name,
+        $json->contributors,
+        $json->retweet_count,
+        $json->favorites_count,
+        $json->favorited,
+        $json->lang,
+        $json->retweeted,
+    );
+
+    $statusvalues = implode("\",\"", $status_values);
+
+    if (!$db) {
+      echo "Failed to connect to MySQL: ";
+    }
+
+    else {
+        $query = "INSERT INTO status ($status_columns) VALUES (\"$status_values\")";
+       // echo "$query\n\n\n";
+        $db->query($query);
+        echo $db->error;
+        $db->close();
+
+    }
 
 
 }
