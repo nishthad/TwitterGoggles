@@ -99,7 +99,7 @@ function insert_search_metadata($json){
         $query = "INSERT INTO search_metadata ($search_metadata_columns) VALUES (\"$search_metadata_values\")";
         //echo "$query\n\n\n";
         $db->query($query);
-        echo "search metadata error".$db->error."\n\n\n";
+        echo $db->error."\n\n\n";
         $db->close();
 
     }
