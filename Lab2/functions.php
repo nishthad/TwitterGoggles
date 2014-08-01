@@ -42,15 +42,21 @@ function add_records($json){
 
 
     foreach($statuses as $st){
-    insert_user($st->user);
-    $user_id = $st->user->id;
 
-    //inserting status_metadata
-    $status_metadata = $st->metadata;
-    $status_id = $st->id;
-    insert_status_metadata($status_metadata, $status_id);
+        //inserting status
+        $user_id = $st->user->id;
+        insert_status($st, $user_id);
 
-    //inserting status
+        //inserting users
+        insert_user($st->user);
+
+
+        //inserting status_metadata
+        $status_metadata = $st->metadata;
+        $status_id = $st->id;
+        insert_status_metadata($status_metadata, $status_id);
+
+
 
     }
 
