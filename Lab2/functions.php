@@ -162,7 +162,7 @@ function insert_status($json, $userid){
         'in_reply_to_status_id_str',
         'in_reply_to_user_id',
         'in_reply_to_user_id_str',
-        'in_reply_to_screen_name'
+        'in_reply_to_screen_name',
         'contributors',
         'retweet_count',
         'favorites_count',
@@ -175,7 +175,7 @@ function insert_status($json, $userid){
 
      $status_values = array(
         $json->status_id,
-        $userid
+        $userid,
         $json->id_str,
         $json->created_at,
         $json->text,
@@ -191,7 +191,7 @@ function insert_status($json, $userid){
         $json->favorites_count,
         $json->favorited,
         $json->lang,
-        $json->retweeted,
+        $json->retweeted
     );
 
     $statusvalues = implode("\",\"", $status_values);
