@@ -44,7 +44,14 @@ function add_records($json){
        $user_id = $st->user->id;
 
     }
-      echo "USERID: ".$user_id."\n\n";
+    //inserting status_metadata
+    $status_metadata = $st->metadata;
+    $status_id = $st->id;
+    insert_status_metadata($status_metadata, $status_id);
+
+    //inserting status
+
+
 }
 
 
