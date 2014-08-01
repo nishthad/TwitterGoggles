@@ -119,6 +119,17 @@ function insert_search_metadata($json){
 
 
 function insert_status_metadata($json, $status_id){
+    $status_metadata_columns = array (
+        'result_type',
+        'iso_language_code',
+        'status_id',
+        'idstatus_metadata'
+        );
+
+    $status_metadata_values = array(
+        $json->result_type,
+        $json->iso_language_code,
+        $status_id);
 
 }
 
