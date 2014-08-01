@@ -36,10 +36,11 @@ function getSearch(){ //this function combines the queried string and the search
 function add_records($json){
 
     $json = json_decode($json);
+
     $search_metadata = $json->search_metadata;
     insert_search_metadata($search_metadata);
-    $statuses = $json->statuses;
 
+    $statuses = $json->statuses;
 
     foreach($statuses as $st){
 
@@ -55,8 +56,6 @@ function add_records($json){
         $status_metadata = $st->metadata;
         $status_id = $st->id;
         insert_status_metadata($status_metadata, $status_id);
-
-
 
     }
 
@@ -165,7 +164,7 @@ function insert_status($json, $userid){
         'in_reply_to_screen_name',
         'contributors',
         'retweet_count',
-        'favorites_count',
+        'favorite_count',
         'favorited',
         'lang',
         'retweeted'
@@ -174,12 +173,12 @@ function insert_status($json, $userid){
      $status_columns = implode(",",$status_columns);
 
      $status_values = array(
-        $json->status_id,
+        $json->id,
         $userid,
         $json->id_str,
         $json->created_at,
-        $json->text,
-        $json->source,
+        $db->escape_string($json->text),
+        $db->escape_string($json->source),
         $json->truncated,
         $json->in_reply_to_status_id,
         $json->in_reply_to_status_id_str,
@@ -188,13 +187,13 @@ function insert_status($json, $userid){
         $json->in_reply_to_screen_name,
         $json->contributors,
         $json->retweet_count,
-        $json->favorites_count,
+        $json->favorite_count,
         $json->favorited,
         $json->lang,
         $json->retweeted
     );
 
-    $statusvalues = implode("\",\"", $status_values);
+    $status_values = implode("\",\"", $status_values);
 
     if (!$db) {
       echo "Failed to connect to MySQL: ";
