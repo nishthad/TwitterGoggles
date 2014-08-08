@@ -24,10 +24,10 @@ function getTimeline(){ //this function combines the queried userid and the sear
 //done by Jordan
 function getSearch(){ //this function combines the queried string and the search url
     $querystring = urlencode($_GET["query"]); //Receives query inputted and urlencodes querystring
-    $query = "?q=$querystring";  //adds as param
+    $query = "?count=100&q=$querystring";  //adds as param
     $url = "https://api.twitter.com/1.1/search/tweets.json";
     $json = httpcall($query, $url); //calls httpcall function with query and url
-    //echo $json;
+    echo $json;
     add_records($json);
 
 }
@@ -96,18 +96,15 @@ function insert_search_metadata($json){
     );
 
     $search_metadata_values = implode("\",\"", $search_metadata_values);
-    if (!$db) {
-      echo "Failed to connect to MySQL: ";
-    }
 
-    else {
+
         $query = "INSERT INTO search_metadata ($search_metadata_columns) VALUES (\"$search_metadata_values\")";
         //echo "$query\n\n\n";
         $db->query($query);
-        echo $db->error."\n\n\n";
+        //echo $db->error."\n\n\n";
         $db->close();
 
-    }
+
 
 
 }
@@ -132,18 +129,14 @@ function insert_status_metadata($json, $status_id){
 
     $status_metadata_values = implode("\",\"", $status_metadata_values);
 
-    if (!$db) {
-      echo "Failed to connect to MySQL: ";
-    }
 
-    else {
+
         $query = "INSERT INTO status_metadata ($status_metadata_columns) VALUES (\"$status_metadata_values\")";
        // echo "$query\n\n\n";
         $db->query($query);
-        echo $db->error;
+        //echo $db->error;
         $db->close();
 
-    }
 
 }
 
@@ -195,18 +188,14 @@ function insert_status($json, $userid){
 
     $status_values = implode("\",\"", $status_values);
 
-    if (!$db) {
-      echo "Failed to connect to MySQL: ";
-    }
 
-    else {
+
         $query = "INSERT INTO status ($status_columns) VALUES (\"$status_values\")";
        // echo "$query\n\n\n";
         $db->query($query);
-        echo $db->error;
+        //echo $db->error;
         $db->close();
 
-    }
 
 
 }
@@ -304,18 +293,13 @@ function insert_user($user_json){
 
     $user_values = implode("\",\"", $user_values);
 
-    if (!$db) {
-      echo "Failed to connect to MySQL: ";
-    }
 
-    else {
         $query = "INSERT INTO user ($user_columns) VALUES (\"$user_values\")";
         //echo "$query\n\n\n";
         $db->query($query);
-        echo $db->error;
+        //echo $db->error;
         $db->close();
 
-    }
 
 }
 

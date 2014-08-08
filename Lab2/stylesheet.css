@@ -1,5 +1,10 @@
 
 .row-1 {
-    height: 400px;
+    height: 300px;
     overflow-y: scroll;
+}
+
+#view_combined {
+    width: 30%;
+
 }

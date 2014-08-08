@@ -48,7 +48,7 @@
 
                 </div>
                 <div class="col-lg-1"></div>
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="input-group input-group-lg">
 <!--Form to search for strings -->
                         <input type="text" class="form-control" placeholder="Search String 1" id="searchstr1">
@@ -60,8 +60,8 @@
                         <!--Formatted results from query -->
                         <script id="search_info1" type="text/x-handlebars-template">
                             <li class="list-group-item list-group-item-info">
-                                <h1>@{{username}}</h1>
-                                <h4>Tweet:{{tweet}}</h4>
+                                <h4>@{{username}}</h1>
+                                <h5>Tweet:{{tweet}}</h4>
                                 <h5>Time:{{time}}</h5>
                             </li>
                         </script>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 ">
+                <div class="col-lg-4 ">
                     <div class="input-group input-group-lg">
 <!--Form to search for strings -->
                         <input type="text" class="form-control" placeholder="Search String 2" id="searchstr2">
@@ -81,17 +81,38 @@
                         <!--Formatted results from query -->
                         <script id="search_info2" type="text/x-handlebars-template">
                             <li class="list-group-item list-group-item-info">
-                                <h1>@{{username}}</h1>
-                                <h4>Tweet:{{tweet}}</h4>
+                                <h4>@{{username}}</h1>
+                                <h5>Tweet:{{tweet}}</h4>
                                 <h5>Time:{{time}}</h5>
                             </li>
                         </script>
 
                     </div>
+
                 </div>
+
             </div>
             <div class="row">
-            <h2>Combined Results</h2>
+                <button type="button" class="btn btn-info pull-right" id="view_combined">View Combined Results</button>
+            </div>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-6">
+
+                    <h2>Combined Results</h2>
+                        <div id="combined_results" class="row-1">
+                        <!--Formatted results from query -->
+                            <script id="combined" type="text/x-handlebars-template">
+                                <li class="list-group-item list-group-item-info">
+                                    <h4>@{{username}}</h1>
+                                    <h5>Tweet:{{tweet}}</h4>
+                                    <h5>Time:{{time}}</h5>
+                                </li>
+                            </script>
+
+                        </div>
+                </div>
+                <div class="col-lg-2"></div>
 
             </div>
             
